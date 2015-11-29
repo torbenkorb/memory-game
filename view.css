@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+
+body {
+  font: 16px/24px normal arial, helvetica, sans-serif;
+  background-color: #1E824C;
+  color: #ffffff;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site {
+  width: 90%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+#memorycard-container {
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  width: 100%;
+  padding: 48px;
+}
+
+#memorycard-container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+#memorycard-list li {
+  width: 23.5%;
+  float: left;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  min-height: 150px;
+  text-align: center;
+  line-height: 145px;
+  padding: 8px;
+  font-size: 1.5em;
+}
+
+#memorycard-list li:nth-child(4n+1) {
+  margin-left: 0;
+}
+
+#memorycard-list li p {
+  border: 8px solid rgba(0,0,0,0.2);
+  background-color: rgba(65, 131, 215,0.5);
+  border-radius: 8px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+
+#memorycard-list li p:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #4183D7;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#memorycard-list li p.open:after {
+  background-color: transparent;
+}
