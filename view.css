@@ -79,6 +79,7 @@ ul {
   left: 0;
 }
 
-#memorycard-list li p.open:after {
+#memorycard-list li p.open:after,
+#memorycard-list li p.matched:after {
   background-color: transparent;
 }
