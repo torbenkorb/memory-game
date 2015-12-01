@@ -7,19 +7,31 @@
 }
 
 body {
-  font: 16px/24px normal arial, helvetica, sans-serif;
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  line-height: 1.5;
   background-color: #1E824C;
   color: #ffffff;
+  letter-spacing: 0.03em;
 }
 
 h1 {
   text-align: center;
+  margin: 0 auto;
+  padding: 3rem;
+  font-weight: normal;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+img {
+  width: 35%;
+  max-width: 100%;
+  vertical-align: middle;
 }
 
 .site {
@@ -31,7 +43,8 @@ ul {
   background-color: rgba(255,255,255,0.2);
   border-radius: 8px;
   width: 100%;
-  padding: 48px;
+  padding: 48px 48px 24px;
+  position: relative;
 }
 
 #memorycard-container:after {
@@ -82,4 +95,14 @@ ul {
 #memorycard-list li p.open:after,
 #memorycard-list li p.matched:after {
   background-color: transparent;
+}
+
+
+.box {
+  position: absolute;
+  top: -96px;
+  right: 0;
+  background-color: rgba(255,255,255,0.2);
+  padding: 12px 24px;
+  border-radius: 8px;
 }

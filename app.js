@@ -12,16 +12,20 @@
 
 // Create an array with the unique items.
 var subjects = [
-  'House',
-  'Mouse',
-  'Dog',
-  'Cat',
-  'Car',
-  'Yellow'
+  'img/airplane.svg',
+  'img/directions_car.svg',
+  'img/directions_transit.svg',
+  'img/github3.svg',
+  'img/home.svg',
+  'img/truck.svg'
 ];
 
 
 // Create Variables that will be used later
+
+
+
+
 
 var shownSubject;
 var compareSubject;
@@ -33,8 +37,8 @@ var attemptsCounter = document.getElementById('attemptsCounter');
 
 // Print points variable to the browser
 function printCounters(points, attempts) {
-  pointsCounter.innerText=points;
-  attemptsCounter.innerText=attempts;
+  $(pointsCounter).text(points);
+  $(attemptsCounter).text(attempts);
 }
 printCounters(points, attempts);
 
@@ -53,7 +57,7 @@ for ( var i = 0; i < subjects.length; i++ ) {
 memoryBoard.sort(function() { return 0.5 - Math.random() });
 
 for ( var i = 0; i < memoryBoard.length; i++ ) {
-  document.getElementById('memorycard-list').innerHTML += '<li><p>' + memoryBoard[i] + '</div></p>';
+  document.getElementById('memorycard-list').innerHTML += '<li><p><img src="' + memoryBoard[i] + '"></div></p>';
 }
 
 
@@ -77,7 +81,7 @@ $('p').click(function() {
   if( openCards.length >= 2) {
     compareSubject = $(this);
 
-    if( shownSubject.text() !== compareSubject.text() ) {
+    if( shownSubject.html() !== compareSubject.html() ) {
       attempts++;
       alert("Fail...");
       shownSubject.removeClass('open');
@@ -95,4 +99,3 @@ $('p').click(function() {
   printCounters(points, attempts);
   
 })
-
