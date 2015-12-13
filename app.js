@@ -22,11 +22,6 @@ var subjects = [
 
 
 // Create Variables that will be used later
-
-
-
-
-
 var shownSubject;
 var compareSubject;
 var points = 0;
@@ -42,6 +37,15 @@ function printCounters(points, attempts) {
 }
 printCounters(points, attempts);
 
+
+function hideCards() {
+  $('.open').removeClass('open');
+}
+
+function removeContent() {
+  shownSubject = "";
+  compareSubject = "";
+}
 
 
 // 2.) Double the items in the array and append it to the array
@@ -81,11 +85,16 @@ $('p').click(function() {
   if( openCards.length >= 2) {
     compareSubject = $(this);
 
+    if( openCards.length > 2) {
+      hideCards();
+      removeContent();
+    }
+
     if( shownSubject.html() !== compareSubject.html() ) {
       attempts++;
-      alert("Fail...");
-      shownSubject.removeClass('open');
-      compareSubject.removeClass('open');
+      //alert("Fail...");
+      setTimeout(function() { hideCards()}, 2000);
+      
     } else {
       points+=100;
       attempts++;
