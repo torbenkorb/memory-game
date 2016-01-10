@@ -2,12 +2,12 @@
 
 // Create an array with the unique items.
 var subjects = [
-  'img/airplane.svg',
-  'img/directions_car.svg',
-  'img/directions_transit.svg',
-  'img/github3.svg',
-  'img/home.svg',
-  'img/truck.svg'
+  'img/animals-01.svg',
+  'img/animals-02.svg',
+  'img/animals-03.svg',
+  'img/animals-04.svg',
+  'img/animals-07.svg',
+  'img/animals-08.svg'
 ];
 
 // Double the items in the array and append it to the array
@@ -26,15 +26,17 @@ for ( var i = 0; i < memoryBoard.length; i++ ) {
 
 
 
-
 // Create Variables that will be used later
-var firstCard = "";
-var secondCard = "";
-var openCards = 0;
-var points = 0;
-var attempts = 0;
-var pointsCounter = document.getElementById('counter');
-var attemptsCounter = document.getElementById('attemptsCounter');
+
+var firstCard = "";                           // The first opened card
+var secondCard = "";                          // The second opened card
+var totalPairs = subjects.length;             // When matches is equal to this the player won
+var openedCards = 0;                          // Should never be higher than 2
+var matches = 0;                              // How many pairs already matched
+var points = 0;                               // Points counter of the Player
+var attempts = 0;                             // Attempts counter
+var pointsCounter = document.getElementById('counter');     // The element in DOM which houses the points
+var attemptsCounter = document.getElementById('attemptsCounter');     // The element in DOM which houses the attempts
 
 
 // Print points variable to the browser
@@ -45,6 +47,11 @@ function printCounters(points, attempts) {
 printCounters(points, attempts);
 
 
+function showCard(el) {
+  el.addClass('open');
+  openedCards++;
+}
+
 function hideCards() {
   $('.open').removeClass('open');
 }
@@ -54,56 +61,77 @@ function removeContent() {
   secondCard = "";
 }
 
+function removeMatchedCards() {
+  $('.matched').css('visibility', 'hidden');
+}
+
 
 // Create click event
 $('p').click(function() {
 
-  openCards++;
-  $(this).addClass('open');
-  $('.matched').css('visibility', 'hidden');
+  if ( $(this).hasClass('open') ) {
+    return;
+  }
+
+  showCard($(this));
+
+  if ( matches != totalPairs ) {
+    removeMatchedCards();
+  }
   
   
-  if ( openCards == 1) {
+  
+  if ( openedCards == 1) {
 
     firstCard = $(this);
 
-  } else if ( openCards == 2) {
+  } else if ( openedCards == 2) {
 
     secondCard = $(this);
 
     if( firstCard.html() !== secondCard.html() ) {
       attempts++;
       console.log("Fail...");
-      
     } else {
       points+=100;
       attempts++;
+      matches++;
       console.log("GOAL!!!!!");
-
-      firstCard.parent().addClass('matched');
       secondCard.parent().addClass('matched');
+      firstCard.parent().addClass('matched');
     }
 
   } else {
-    openCards = 1;
+    
     hideCards();
     removeContent();
+    openedCards = 1;
     $(this).addClass('open');
     firstCard = $(this);
   }
 
-  console.log( openCards, firstCard.html(), secondCard );
+
+
+
+
+
+
+  
+
+  if ( matches == totalPairs ) {
+
+    if ( attempts == totalPairs ) {
+      points+=5000;
+    }
+
+    if ( attempts < 10 ) {
+      points+=1000;
+    } 
+
+    alert('YOU WON! GAME OVER');
+    // Create a final GAME OVER screen
+  }
 
   printCounters(points, attempts);
   
 })
-
-
-
-
-
-/*
-TODOs:
-- Create an finish screen
-
-*/
