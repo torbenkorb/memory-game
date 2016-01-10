@@ -1,14 +1,4 @@
-/*
-
-4.) Let user open 2 cards and compare them, if matches 1 point, if not 1 fail
-5.) Once all cards are found game is finished
-
-*/
-
-
 'use strict';
-
-
 
 // Create an array with the unique items.
 var subjects = [
@@ -20,13 +10,30 @@ var subjects = [
   'img/truck.svg'
 ];
 
+// Double the items in the array and append it to the array
+var memoryBoard = subjects.slice(0);
+
+for ( var i = 0; i < subjects.length; i++ ) {
+  memoryBoard.push(subjects[i]);
+}
+
+// Shuffle the items from the array and print them to the browser. CSS hides content, by click it will be shown
+memoryBoard.sort(function() { return 0.5 - Math.random() });
+
+for ( var i = 0; i < memoryBoard.length; i++ ) {
+  document.getElementById('memorycard-list').innerHTML += '<li><p><img src="' + memoryBoard[i] + '"></div></p>';
+}
+
+
+
 
 // Create Variables that will be used later
-var shownSubject;
-var compareSubject;
+var firstCard = "";
+var secondCard = "";
+var openCards = 0;
 var points = 0;
-var pointsCounter = document.getElementById('counter');
 var attempts = 0;
+var pointsCounter = document.getElementById('counter');
 var attemptsCounter = document.getElementById('attemptsCounter');
 
 
@@ -43,68 +50,60 @@ function hideCards() {
 }
 
 function removeContent() {
-  shownSubject = "";
-  compareSubject = "";
+  firstCard = "";
+  secondCard = "";
 }
-
-
-// 2.) Double the items in the array and append it to the array
-var memoryBoard = subjects.slice(0);
-
-for ( var i = 0; i < subjects.length; i++ ) {
-  memoryBoard.push(subjects[i]);
-}
-
-
-
-// 3.) Shuffle the items from the array and print them to the browser. CSS hides content, by click it will be shown
-memoryBoard.sort(function() { return 0.5 - Math.random() });
-
-for ( var i = 0; i < memoryBoard.length; i++ ) {
-  document.getElementById('memorycard-list').innerHTML += '<li><p><img src="' + memoryBoard[i] + '"></div></p>';
-}
-
-
-
-
-
-
 
 
 // Create click event
 $('p').click(function() {
 
+  openCards++;
   $(this).addClass('open');
+  $('.matched').css('visibility', 'hidden');
+  
+  
+  if ( openCards == 1) {
 
-  var openCards = $('.open');
+    firstCard = $(this);
 
-  if( openCards.length <= 1) {
-    shownSubject = $(this);
-  }
+  } else if ( openCards == 2) {
 
-  if( openCards.length >= 2) {
-    compareSubject = $(this);
+    secondCard = $(this);
 
-    if( openCards.length > 2) {
-      hideCards();
-      removeContent();
-    }
-
-    if( shownSubject.html() !== compareSubject.html() ) {
+    if( firstCard.html() !== secondCard.html() ) {
       attempts++;
-      //alert("Fail...");
-      setTimeout(function() { hideCards()}, 2000);
+      console.log("Fail...");
       
     } else {
       points+=100;
       attempts++;
-      alert("GOAL!!!!!");
-      shownSubject.removeClass('open').addClass('matched');
-      compareSubject.removeClass('open').addClass('matched');
+      console.log("GOAL!!!!!");
+
+      firstCard.parent().addClass('matched');
+      secondCard.parent().addClass('matched');
     }
 
+  } else {
+    openCards = 1;
+    hideCards();
+    removeContent();
+    $(this).addClass('open');
+    firstCard = $(this);
   }
+
+  console.log( openCards, firstCard.html(), secondCard );
 
   printCounters(points, attempts);
   
 })
+
+
+
+
+
+/*
+TODOs:
+- Create an finish screen
+
+*/
