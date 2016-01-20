@@ -67,7 +67,7 @@ function removeMatchedCards() {
 
 
 // Create click event
-$('p').click(function() {
+$('#memorycard-container p').click(function() {
 
   if ( $(this).hasClass('open') ) {
     return;
