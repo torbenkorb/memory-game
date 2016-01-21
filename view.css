@@ -13,6 +13,7 @@ body {
   background-color: seagreen;
   color: #ffffff;
   letter-spacing: 0.03em;
+  padding-bottom: 3rem;
 }
 
 h1 {
@@ -113,15 +114,18 @@ a {
 }
 
 
-.box {
+.infobox {
   position: absolute;
   top: -96px;
-  right: 0;
+  left: 0;
   padding: 12px 24px;
 }
 
 .restart {
   text-align: right;
+  position: absolute;
+  top: -58px;
+  right: 0;
 }
 
 .restart img {

@@ -1,7 +1,7 @@
 'use strict';
 
 // Create an array with the unique items.
-var subjects = [
+var stack = [
   'img/animals-01.svg',
   'img/animals-02.svg',
   'img/animals-03.svg',
@@ -11,10 +11,10 @@ var subjects = [
 ];
 
 // Double the items in the array and append it to the array
-var memoryBoard = subjects.slice(0);
+var memoryBoard = stack.slice(0);
 
-for ( var i = 0; i < subjects.length; i++ ) {
-  memoryBoard.push(subjects[i]);
+for ( var i = 0; i < stack.length; i++ ) {
+  memoryBoard.push(stack[i]);
 }
 
 // Shuffle the items from the array and print them to the browser. CSS hides content, by click it will be shown
@@ -30,7 +30,7 @@ for ( var i = 0; i < memoryBoard.length; i++ ) {
 
 var firstCard = "";                           // The first opened card
 var secondCard = "";                          // The second opened card
-var totalPairs = subjects.length;             // When matches is equal to this the player won
+var totalPairs = stack.length;             // When matches is equal to this the player won
 var openedCards = 0;                          // Should never be higher than 2
 var matches = 0;                              // How many pairs already matched
 var points = 0;                               // Points counter of the Player
@@ -44,8 +44,6 @@ function printCounters(points, attempts) {
   $(pointsCounter).text(points);
   $(attemptsCounter).text(attempts);
 }
-printCounters(points, attempts);
-
 
 function showCard(el) {
   el.addClass('open');
@@ -65,9 +63,19 @@ function removeMatchedCards() {
   $('.matched').css('visibility', 'hidden');
 }
 
+function increaseAttempts() {
+  attempts++;
+  printCounters(points,attempts);
+}
+
+function increasePoints(amount) {
+  points += amount;
+  printCounters(points, attempts);
+}
+
 
 // Create click event
-$('#memorycard-container p').click(function() {
+$('#memorycard-list p').click(function() {
 
   if ( $(this).hasClass('open') ) {
     return;
@@ -90,13 +98,12 @@ $('#memorycard-container p').click(function() {
     secondCard = $(this);
 
     if( firstCard.html() !== secondCard.html() ) {
-      attempts++;
+      increaseAttempts();
       console.log("Fail...");
     } else {
-      points+=100;
-      attempts++;
+      increasePoints(100);
+      increaseAttempts();
       matches++;
-      console.log("GOAL!!!!!");
       secondCard.parent().addClass('matched');
       firstCard.parent().addClass('matched');
     }
@@ -111,7 +118,6 @@ $('#memorycard-container p').click(function() {
   }
 
 
-  printCounters(points, attempts);
 
 
 
@@ -121,14 +127,13 @@ $('#memorycard-container p').click(function() {
   if ( matches == totalPairs ) {
 
     if ( attempts == totalPairs ) {
-      points+=5000;
+      increasePoints(5000);
 
     }
 
     if ( attempts < 10 ) {
-      points+=1000;
+      increasePoints(1000);
     } 
-    printCounters(points, attempts);
 
     alert('YOU WON! GAME OVER');
     // Create a final GAME OVER screen
