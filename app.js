@@ -111,7 +111,7 @@ $('#memorycard-container p').click(function() {
   }
 
 
-
+  printCounters(points, attempts);
 
 
 
@@ -122,16 +122,18 @@ $('#memorycard-container p').click(function() {
 
     if ( attempts == totalPairs ) {
       points+=5000;
+
     }
 
     if ( attempts < 10 ) {
       points+=1000;
     } 
+    printCounters(points, attempts);
 
     alert('YOU WON! GAME OVER');
     // Create a final GAME OVER screen
   }
 
-  printCounters(points, attempts);
+  
   
 })

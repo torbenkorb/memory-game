@@ -28,11 +28,7 @@ ul {
   padding: 0;
 }
 
-img {
-  width: 45%;
-  max-width: 100%;
-  vertical-align: middle;
-}
+
 
 a {
   color: #fff;
@@ -110,6 +106,12 @@ a {
   background-color: transparent;
 }
 
+#memorycard-list img {
+  width: 45%;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
 
 .box {
   position: absolute;
@@ -120,4 +122,8 @@ a {
 
 .restart {
   text-align: right;
+}
+
+.restart img {
+  vertical-align: text-top;
 }
