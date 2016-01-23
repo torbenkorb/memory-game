@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="de">
-  <head>
-    <title>Memory Card Game</title>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="canonical" href="">
-    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="view.css">
-  </head>
-  <body>
-    <div class="site">
+<html>
+    <head>
+        <title>Memory Card Game</title>
+        <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="site">
+            <h1>Help find all pairs</h1>
+            <div id="memorycard-wrap" class="field">
 
-      <h1>Help find all pairs</h1>
+                <ul id="memorycard-container"></ul>
+                
+                <div id="results" class="field">
+                    <p id="points">Points: <span id="pointer">0</span></p>
+                    <p id="attempts">Attempts: <span id="attempter">0</span></p>
+                </div>
 
-      <div id="memorycard-container" class="innerfield">
-        <ul id="memorycard-list"></ul>
+                <div id="game-over">
+                    <h2>Congratulations!!!</h2>
+                    <p>You earned <span id="end-pointer">0</span> points with <span id="end-attempter">0</span> attempts.</p>
+                    <p class="restart"><a href="./"><img src="img/restart.svg" alt=""> Restart Game</a></p>
+                </div>
 
-        <div class="infobox innerfield">
-          <div class="points">Points: <span id="counter">0</span></div>
-          <div class="attempts">Attempts: <span id="attemptsCounter">0</span></div>
+            </div>
         </div>
-
-        <p class="restart"><a href="./"><img src="img/spinner11.svg" alt=""> Restart Game</a></p>
-
-      </div>
-
-      
-
-    </div> <!-- .site END -->
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-
-  </body>
+        
+        
+        <script src="playboard.js"></script>
+        <script>
+            game = new playBoard(stack2);
+            game.renderBoard();
+        </script>
+        
+    </body>
 </html>
