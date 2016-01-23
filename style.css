@@ -33,13 +33,17 @@ a {
 
 .restart {
     margin-top: 1.5rem;
-    animation: highlight 1.2s both infinite;
 }
 
 .restart img {
     width: 35px;
     vertical-align: text-top;
 }
+
+.show .restart img {
+    animation: spin 2.5s ease-out;
+}
+
 
 #site {
     margin: 0 auto;
@@ -141,8 +145,8 @@ a {
 
 
 
-@keyframes highlight {
-    50% {
-        transform: scale(1.05);
+@keyframes spin {
+    100% {
+        transform: rotate(1800deg);
     }
 }
