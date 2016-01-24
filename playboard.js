@@ -3,7 +3,7 @@
 var stack = ['House', 'Cat', 'Car', 'Mountain', 'Bird', 'Dog'];
 var stack2 = ['animals-01.svg' ,'animals-02.svg' ,'animals-03.svg' ,'animals-07.svg' ,'animals-05.svg' ,'animals-09.svg']
 
-function playBoard(stack) {
+function Game(stack) {
     this.allCards = stack.concat(stack);
     this.matches = null;
     this.points = null;
@@ -11,70 +11,69 @@ function playBoard(stack) {
     this.openCard = null;
 }
 
-playBoard.prototype.sortCards = function() {
+Game.prototype.sortCards = function() {
     this.sortedCards = this.allCards.sort(function() { return .5 - Math.random() });
 };
 
-playBoard.prototype.renderBoard = function() {
+Game.prototype.renderBoard = function(container) {
     this.sortCards();
-    var container = document.getElementById('memorycard-container');
     container.innerHTML = "";
     for ( var i=0; i < this.sortedCards.length; i++ ) {
         container.innerHTML += '<li onclick="getData(this)"><img src="img/' + this.sortedCards[i] + '"></li>';
     }
 };
 
-playBoard.prototype.updatePoints = function(points) {
+Game.prototype.updatePoints = function(points) {
     this.points += points;
     var pointer = document.getElementById('pointer');
     pointer.innerHTML = this.points;
 };
 
-playBoard.prototype.increaseAttempts = function() {
+Game.prototype.increaseAttempts = function() {
     this.attempts++;
     var attempter = document.getElementById('attempter');
     attempter.innerHTML = this.attempts;
 };
 
 
-playBoard.prototype.saveCard = function(card) {
+Game.prototype.saveCard = function(card) {
     this.openCard = card;
 };
 
-playBoard.prototype.resetCard = function() {
+Game.prototype.resetCard = function() {
     this.openCard = null;
 };
 
-playBoard.prototype.showCard = function(card) {
+Game.prototype.showCard = function(card) {
     card.classList.add('open');
 };
 
-playBoard.prototype.hideCards = function() {
+Game.prototype.hideCards = function() {
     var cards = document.getElementsByClassName('open');
     for ( var i = cards.length - 1; i >= 0; --i ) {
         cards[i].classList.remove('open');
     }
 };
 
-playBoard.prototype.countCards = function() {
+Game.prototype.countCards = function() {
     var cards = document.getElementsByClassName('open');
     return cards.length;
 };
 
-playBoard.prototype.hasMatch = function(element1, element2) {
+Game.prototype.hasMatch = function(element1, element2) {
     this.matches++;
     element1.classList.add('match');
     element2.classList.add('match');
 };
 
-playBoard.prototype.removeMatched = function() {
+Game.prototype.removeMatched = function() {
     var matches = document.getElementsByClassName('match');
     for (var i = matches.length - 1; i >= 0; --i) {
         matches[i].style.visibility = "hidden";
     }
 };
 
-playBoard.prototype.gameOver = function() {
+Game.prototype.gameOver = function() {
     var pointer = document.getElementById('end-pointer');
     var attempter = document.getElementById('end-attempter');
     var gameoverModal = document.getElementById('game-over');

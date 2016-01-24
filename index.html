@@ -29,8 +29,9 @@
         
         <script src="playboard.js"></script>
         <script>
-            game = new playBoard(stack2);
-            game.renderBoard();
+            game = new Game(stack2);
+            var container = document.getElementById('memorycard-container');
+            game.renderBoard(container);
         </script>
         
     </body>
