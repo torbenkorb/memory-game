@@ -6,8 +6,8 @@ var stack2 = ['animals-01.svg' ,'animals-02.svg' ,'animals-03.svg' ,'animals-07.
 function Game(stack) {
     this.allCards = stack.concat(stack);
     this.matches = null;
-    this.points = null;
-    this.attempts = null;
+    this.points = 0;
+    this.attempts = 0;
     this.openCard = null;
 }
 
