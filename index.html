@@ -6,6 +6,7 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+    
         <div id="site">
             <h1>Help find all pairs</h1>
             <div id="memorycard-wrap" class="field">
@@ -13,26 +14,21 @@
                 <ul id="memorycard-container"></ul>
                 
                 <div id="results" class="field">
+                    <p>Player 1</p>
                     <p id="points">Points: <span id="pointer">0</span></p>
                     <p id="attempts">Attempts: <span id="attempter">0</span></p>
                 </div>
 
                 <div id="game-over">
-                    <h2>Congratulations!!!</h2>
+                    <h2>Congratulations <span id="playerName">Player 1</span>!!!</h2>
                     <p>You earned <span id="end-pointer">0</span> points with <span id="end-attempter">0</span> attempts.</p>
-                    <p class="restart"><a href="./"><img src="img/restart.svg" alt=""> Restart Game</a></p>
+                    <p id="restart"><a href="./"><img src="img/restart.svg" alt=""> Play New Game</a></p>
                 </div>
 
             </div>
         </div>
         
-        
         <script src="playboard.js"></script>
-        <script>
-            game = new Game(stack2);
-            var container = document.getElementById('memorycard-container');
-            game.renderBoard(container);
-        </script>
         
     </body>
 </html>
