@@ -7,6 +7,7 @@ function Game(stack, player) {
     this.player = player;
     this.cards = stack.concat(stack);
     this.highscore = [];
+    this.savePlayer();
 }
 
 Game.prototype.renderBoard = function(container) {
@@ -96,6 +97,11 @@ Game.prototype.saveHighscore = function() {
     this.highscore.push(this.points);
 }
 
+Game.prototype.savePlayer = function() {
+    var player = document.getElementById('player');
+    player.innerHTML = this.player;
+}
+
 
 
 // CONTROLLER
@@ -136,7 +142,7 @@ function playGame() {
 
 
         if(game.matches === game.cards.length / 2) {
-            if(game.attempts < 10) {
+            if(game.attempts < game.cards.length) {
                 game.addPoints(game.points);
             }
             if (game.attempts === game.cards.length / 2) {
