@@ -10,6 +10,7 @@ function Game(stack, player) {
     this.savePlayer();
 }
 
+
 Game.prototype.renderBoard = function(container) {
     this.matches = 0;
     this.points = 0;
@@ -54,20 +55,27 @@ Game.prototype.writePoints = function() {
     container.innerHTML = this.points;
 }
 
-Game.prototype.addPoints = function(points) {
+Game.prototype.updatePoints = function() {
+    var points = this.cards.length / 2 * 100;
+    points = points - (this.attempts * 100);
+    if (points <= 100) {
+        points = 100;
+    }    
     this.points += points;
     this.writePoints();
 }
 
-Game.prototype.doublePoints = function() {
-    this.points += this.points;
-    this.updatePoints();
+Game.prototype.calculatePoints = function() {
+    if(this.attempts < this.cards.length) {
+        this.points += this.points * 4;
+        this.writePoints();
+    }
+    if (this.attempts === this.cards.length / 2) {
+        this.points += this.points * 9;
+        this.writePoints();
+    }
 }
 
-Game.prototype.resetPoints = function() {
-    this.points = 0;
-    this.updatePoints();
-}
 
 Game.prototype.hideMatched = function() {
     for(var i=0; i < this.savedCards.length; i++) {
@@ -91,15 +99,29 @@ Game.prototype.gameOver = function() {
     attempter.innerHTML = this.attempts;
     player.innerHTML = this.player;
     gameoverModal.classList.add('show');
+    this.saveHighscore();
 }
 
 Game.prototype.saveHighscore = function() {
     this.highscore.push(this.points);
+    var highscoreElement = document.getElementById('highscores');
+    highscoreElement.innerHTML = "";
+    for (var i = 0; i < this.highscore.length; i++) {
+        var counter = i + 1;
+        highscoreElement.innerHTML += '<p>' + counter + '.) ' + this.highscore[i];
+    }
 }
 
 Game.prototype.savePlayer = function() {
     var player = document.getElementById('player');
     player.innerHTML = this.player;
+}
+
+Game.prototype.debugMode = function() {
+    var cardItems = document.querySelectorAll('li.card');
+    for (var i=0; i < cardItems.length; i++) {
+        cardItems[i].classList.add('debug');
+    }
 }
 
 
@@ -130,7 +152,7 @@ function playGame() {
 
         if(game.savedCards[0].innerHTML === this.innerHTML) {
             game.updateMatches();
-            game.addPoints(500);
+            game.updatePoints();
             game.savedCards.push(this);
 
         } else {
@@ -142,12 +164,7 @@ function playGame() {
 
 
         if(game.matches === game.cards.length / 2) {
-            if(game.attempts < game.cards.length) {
-                game.addPoints(game.points);
-            }
-            if (game.attempts === game.cards.length / 2) {
-                game.addPoints(game.points * 2);
-            }
+            game.calculatePoints();
             game.gameOver();
         }
     }

@@ -100,7 +100,8 @@ a {
     background-color: #4183D7;
 }
 
-#memorycard-container li.open:after {
+#memorycard-container li.open:after,
+#memorycard-container li.debug:after {
     display: none;
 }
 
