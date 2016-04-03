@@ -103,13 +103,21 @@ Game.prototype.gameOver = function() {
 }
 
 Game.prototype.saveHighscore = function() {
-    this.highscore.push(this.points);
+    var combinedScore = [];
+
+    combinedScore.push(this.points);
+    combinedScore.push(this.attempts);
+
+    this.highscore.push(combinedScore);
+
     var highscoreElement = document.getElementById('highscores');
     highscoreElement.innerHTML = "";
     for (var i = 0; i < this.highscore.length; i++) {
         var counter = i + 1;
         highscoreElement.innerHTML += '<p>' + counter + '.) ' + this.highscore[i];
     }
+
+
 }
 
 Game.prototype.savePlayer = function() {
