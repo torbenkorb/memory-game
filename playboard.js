@@ -22,7 +22,7 @@ Game.prototype.renderBoard = function(container) {
     this.cards.sort(function() { return .5 - Math.random() });
     container.innerHTML = "";
     for ( var i=0; i < this.cards.length; i++ ) {
-        container.innerHTML += '<li class="card"><img src="img/' + this.cards[i] + '"></li>';
+        container.innerHTML += '<li class="card"><div class="card__inner"><div class="card__backside"></div><div class="card__image"><img src="img/' + this.cards[i] + '"></div></div></li>';
     }
     this.addListener();
     var gameoverModal = document.getElementById('game-over');
@@ -190,6 +190,9 @@ restartButton.onclick = function(e) {
 
 // INIT
 var playerName = prompt("What's your name, Player?")
+if(!playerName) {
+    playerName = "Player 1";
+}
 var game = new Game(stack2, playerName);
 var gameContainer = document.getElementById('memorycard-container');
 game.renderBoard(gameContainer);
