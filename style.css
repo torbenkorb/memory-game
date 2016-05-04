@@ -33,6 +33,10 @@ a {
 
 #restart {
     margin-top: 1.5rem;
+    border: 3px solid;
+    border-radius: 8px;
+    padding: 1rem;
+    display: inline-block;
 }
 
 #restart img {
@@ -172,6 +176,9 @@ a {
     z-index: -1;
     -webkit-transition: 500ms;
     transition: 500ms;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
