@@ -189,7 +189,7 @@ restartButton.onclick = function(e) {
 }
 
 // INIT
-var playerName = prompt("What's your name, Player?")
+var playerName = prompt("Hi Player, what's your name?")
 if(!playerName) {
     playerName = "Player 1";
 }

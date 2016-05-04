@@ -41,7 +41,8 @@ a {
 }
 
 .show #restart img {
-    animation: spin 2.5s ease-out;
+    -webkit-animation: spin 2.5s ease-out;
+            animation: spin 2.5s ease-out;
 }
 
 
@@ -85,14 +86,19 @@ a {
     color: #333;
     cursor: pointer;
     position: relative;
-    perspective: 1200px;
+    -webkit-perspective: 1200px;
+            perspective: 1200px;
 }
 
 #memorycard-container li .card__inner {
     min-height: 150px;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
-    transition: transform 1s cubic-bezier(.55,-.62, .27, 1.2);
-    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 800ms cubic-bezier(.55,-.62, .27, 1.2);
+    transition: -webkit-transform 800ms cubic-bezier(.55,-.62, .27, 1.2);
+    transition: transform 800ms cubic-bezier(.55,-.62, .27, 1.2);
+    transition: transform 800ms cubic-bezier(.55,-.62, .27, 1.2), -webkit-transform 800ms cubic-bezier(.55,-.62, .27, 1.2);
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
 }
 
 #memorycard-container li .card__backside {    
@@ -103,7 +109,8 @@ a {
     right: 0;
     bottom: 0;
     z-index: 100;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
 }
 
 #memorycard-container li .card__image {
@@ -114,17 +121,30 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 
 #memorycard-container li.open .card__inner,
 #memorycard-container li.debug .card__inner {
-    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
 }
 
 
@@ -150,6 +170,7 @@ a {
     background-color: rgba(0,0,0,0.85);
     opacity: 0;
     z-index: -1;
+    -webkit-transition: 500ms;
     transition: 500ms;
 }
 
@@ -172,8 +193,20 @@ a {
 
 
 
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(1800deg);
+                transform: rotate(1800deg);
+    }
+}
+
+
+
+
+
 @keyframes spin {
     100% {
-        transform: rotate(1800deg);
+        -webkit-transform: rotate(1800deg);
+                transform: rotate(1800deg);
     }
 }
