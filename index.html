@@ -8,29 +8,37 @@
     <body>
     
         <div id="site">
-            <h1>Help find all pairs</h1>
 
-            <div id="memorycard-wrap" class="field">
+            <div class="gameboard">
+                <h1>Help find all pairs</h1>
 
-                <ul id="memorycard-container"></ul>
+                <div id="memorycard-wrap" class="field">
+
+                    <ul id="memorycard-container"></ul>
+                    
+                    <div id="results" class="field">
+                        <p>Player: <span id="player">Player 1</span></p>
+                        <p id="points">Points: <span id="pointer">0</span></p>
+                        <p id="attempts">Attempts: <span id="attempter">0</span></p>
+                    </div>
+                </div>
+
                 
-                <div id="results" class="field">
-                    <p>Player: <span id="player">Player 1</span></p>
-                    <p id="points">Points: <span id="pointer">0</span></p>
-                    <p id="attempts">Attempts: <span id="attempter">0</span></p>
-                </div>
             </div>
 
-            <div id="game-over">
-                <div class="game-over__card">
-                    <h2>Congratulations <span id="playerName">Player 1</span>!!!</h2>
-                    <p>You earned <span id="end-pointer">0</span> points with <span id="end-attempter">0</span> attempts.</p>
-                    <p id="restart"><a href="./"><img src="img/restart.svg" alt=""> Play again</a></p>
-                </div>
+            <div class="sidebar">
+                <h1>Highscores</h1>
+                <div id="highscores"></div>
             </div>
 
-            <h1>Highscores</h1>
-            <div id="highscores"></div>
+        </div>
+
+        <div id="game-over">
+            <div class="game-over__card">
+                <h2>Congratulations <span id="playerName">Player 1</span>!!!</h2>
+                <p>You earned <span id="end-pointer">0</span> points with <span id="end-attempter">0</span> attempts.</p>
+                <p id="restart"><a href="./"><img src="img/restart.svg" alt=""> Play again</a></p>
+            </div>
         </div>
         
         <script src="playboard.js"></script>
