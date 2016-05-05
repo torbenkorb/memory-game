@@ -79,7 +79,8 @@ Game.prototype.calculatePoints = function() {
 
 Game.prototype.hideMatched = function() {
     for(var i=0; i < this.savedCards.length; i++) {
-    this.savedCards[i].style.visibility = 'hidden';
+    //this.savedCards[i].style.visibility = 'hidden';
+    this.savedCards[i].classList.add('matched');
     }
 }
 
