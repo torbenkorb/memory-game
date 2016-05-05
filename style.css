@@ -76,6 +76,11 @@ a {
     flex-grow: 1;
 }
 
+.gameboard__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 .sidebar {
     padding: 0 4.5rem;
     background-color: #333;
