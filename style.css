@@ -170,6 +170,7 @@ a {
 
 
 #memorycard-container li.open .card__inner,
+#memorycard-container li.matched .card__inner,
 #memorycard-container li.debug .card__inner {
     -webkit-transform: rotateY(-180deg);
             transform: rotateY(-180deg);
@@ -258,5 +259,9 @@ a {
 
 
 @keyframes matched {
-    100% { transform: translate3d(-400px, -400px, 0); opacity: 0; visibility: hidden; }
+    100% { 
+        transform: translateX(-400px) translateY(-400px) rotate(-45deg); 
+        opacity: 0; 
+        visibility: hidden; 
+    }
 }
